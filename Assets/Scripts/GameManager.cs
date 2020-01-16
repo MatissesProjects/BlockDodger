@@ -9,15 +9,14 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public Text scoreText;
 
-    void Start()
-    {
-    }
-
-    public void EndGame()
+    public void Death(string audioToPlay)
     {
         if (gameHasEnded == false) 
         {
+            FindObjectOfType<AudioManager>().Play(audioToPlay);
+
             gameHasEnded = true;
+
             Debug.Log("You lost a life");
             // we can do anothing here, restart the game, open a menu, show high scores, etc
             Invoke("Restart", restartDelay);

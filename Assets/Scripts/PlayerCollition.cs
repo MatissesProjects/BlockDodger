@@ -7,7 +7,7 @@ public class PlayerCollition : MonoBehaviour
         if(other.collider.tag == "Obstacle") 
         {
             movement.enabled = false;
-            FindObjectOfType<GameManager>().EndGame();
+            FindObjectOfType<GameManager>().Death("ObsticleHit");
         }
     }
 }

@@ -11,6 +11,10 @@ public class Credits : MonoBehaviour
 
     public void RestartGame()
     {
+        PlayerPrefs.SetInt("lives", 5);
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.GetInt("level", 1);
+
         SceneManager.LoadScene(1); // load the first level, 0 is the menu
     }
 }

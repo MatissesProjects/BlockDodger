@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
     {
         PlayerPrefs.SetInt("lives", 5);
         PlayerPrefs.SetInt("score", 0);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerPrefs.GetInt("level", 1);
+        SceneManager.LoadScene(1); // SceneManager.GetActiveScene().buildIndex + 
     }
 }
