@@ -119,10 +119,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8350103929800573869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744e0eedb0ca5bdaa98f7c3d0bee3bed, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a38c3678df94838f9d9b85b8ec7a2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplier: 1.5
   duration: 5
-  speedMultiplierPickupEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
+  pickupEffect: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9,
     type: 3}
+  speedMultiplier: 1.5

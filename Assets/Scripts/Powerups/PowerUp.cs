@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public abstract class PowerUp : MonoBehaviour
 {
-    public float speedMultiplier = 1.5f;
-    public float duration = 5f;
+    public float duration = 5f; // default duration for powerups
 
-    public GameObject speedMultiplierPickupEffect;
+    public GameObject pickupEffect;
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
@@ -18,11 +17,10 @@ public class PowerUp : MonoBehaviour
 
     IEnumerator Pickup(Collider player) {
         // show cool effect on the powerup, show the speed multiplier effect
-        Instantiate(speedMultiplierPickupEffect, transform.position, transform.rotation);
+        Instantiate(pickupEffect, transform.position, transform.rotation);
         
         // add in the powerup
-        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        playerMovement.levelSpeedMultiplier *= speedMultiplier;
+        ApplyPowerup(player);
 
         // hide the object, and remove colliders
         GetComponent<MeshRenderer>().enabled = false;
@@ -32,8 +30,11 @@ public class PowerUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         // remove powerup        
-        playerMovement.levelSpeedMultiplier /= speedMultiplier;
+        UnapplyPowerup(player);
 
         Destroy(gameObject);
     }
+
+    public abstract void ApplyPowerup(Collider player);
+    public abstract void UnapplyPowerup(Collider player);
 }

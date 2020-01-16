@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
+    private void Start() {
+        FindObjectOfType<AudioManager>().Stop("Theme");
+    }
+    
     public void Quit() 
     {
         Debug.Log("Quit the game");
@@ -11,10 +15,6 @@ public class Credits : MonoBehaviour
 
     public void RestartGame()
     {
-        PlayerPrefs.SetInt("lives", 5);
-        PlayerPrefs.SetInt("score", 0);
-        PlayerPrefs.GetInt("level", 1);
-
-        SceneManager.LoadScene(1); // load the first level, 0 is the menu
+        FindObjectOfType<GameManager>().StartGame();
     }
 }

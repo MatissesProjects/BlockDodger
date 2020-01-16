@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpRestTime;
     public float levelSpeedMultiplier = 400f;
 
+    public float forwardSpeed;
+
     void Start()
     {
         forwardForce = 3800f - levelSpeedMultiplier;
@@ -15,13 +17,13 @@ public class PlayerMovement : MonoBehaviour
         jumpForce = 750f;
         jumpRestTime = 1.25f; // seconds
         lastJump = Time.time;
-
     }
 
     // Using fixed update as this is the physics specific version
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, (levelSpeedMultiplier * PlayerPrefs.GetInt("level") + forwardForce) * Time.deltaTime);
+        forwardSpeed = (levelSpeedMultiplier * PlayerPrefs.GetInt("level") + forwardForce) * Time.deltaTime;
+        rb.AddForce(0, 0, forwardSpeed);
 
         if(Input.GetKey("d")) // right
         {
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(rb.position.y < .75) 
+        if(rb.position.y < 0) 
         {
             FindObjectOfType<GameManager>().Death("FallingSound");
         }

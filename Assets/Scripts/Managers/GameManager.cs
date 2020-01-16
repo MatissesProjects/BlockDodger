@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,7 +10,16 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public Text scoreText;
 
-    public void Death(string audioToPlay)
+    public void StartGame()
+    {
+        FindObjectOfType<AudioManager>().Play("Theme");
+        
+        PlayerPrefs.SetInt("lives", 5);
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.GetInt("level", 1);
+        SceneManager.LoadScene(1); // SceneManager.GetActiveScene().buildIndex + 
+    }
+        public void Death(string audioToPlay)
     {
         if (gameHasEnded == false) 
         {
@@ -17,7 +27,7 @@ public class GameManager : MonoBehaviour
 
             gameHasEnded = true;
 
-            Debug.Log("You lost a life");
+            // Debug.Log("You lost a life");
             // we can do anothing here, restart the game, open a menu, show high scores, etc
             Invoke("Restart", restartDelay);
         }
@@ -26,8 +36,8 @@ public class GameManager : MonoBehaviour
     void Restart()
     {
         int lives = PlayerPrefs.GetInt("lives");
-        Debug.Log("number of lives left");
-        Debug.Log(lives - 1);
+        // Debug.Log("number of lives left");
+        // Debug.Log(lives - 1);
         if (lives - 1 > 0) 
         {
             PlayerPrefs.SetInt("lives", lives - 1);
