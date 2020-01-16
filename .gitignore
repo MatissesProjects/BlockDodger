@@ -58,3 +58,11 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+
+
+
+Packages/
+*_Data/
+*x86_64
+Assets/EffectExamples*
